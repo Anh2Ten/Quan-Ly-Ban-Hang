@@ -3,83 +3,825 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Không tìm thấy trang</title>
-    <!-- Thêm Font Awesome từ CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Thêm Tailwind CSS từ CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+    
+    <!-- SEO Meta Tags -->
+    <title>404 - Trang không tìm thấy | SapaSoftware</title>
+    <meta name="description" content="Trang bạn đang tìm kiếm không tồn tại. Quay lại trang chủ SapaSoftware để khám phá các giải pháp quản lý hóa đơn hiệu quả.">
+    <meta name="robots" content="noindex, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="404 - Trang không tìm thấy | SapaSoftware">
+    <meta property="og:description" content="Trang bạn đang tìm kiếm không tồn tại. Quay lại trang chủ SapaSoftware.">
+    <meta property="og:image" content="https://i.imgur.com/ihbHi2c.png">
+    <meta property="og:url" content="https://quanlybanhang.store/404">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="vi_VN">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YG0MPPSMLT"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-YG0MPPSMLT');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YG0MPPSMLT');
     </script>
 
     <style>
+        :root {
+            --transition-speed: 0.3s;
+            --border-radius: 12px;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Light theme variables */
+        body.light {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border-color: #e2e8f0;
+            --navbar-bg: rgba(255, 255, 255, 0.9);
+            --toggle-bg: #e2e8f0;
+            --toggle-handle: #3b82f6;
+        }
+        
+        /* Dark theme variables */
+        body.dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #60a5fa;
+            --accent-hover: #3b82f6;
+            --border-color: #475569;
+            --navbar-bg: rgba(15, 23, 42, 0.9);
+            --toggle-bg: #334155;
+            --toggle-handle: #fbbf24;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all var(--transition-speed) ease;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            animation: float 20s infinite linear;
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            left: 20%;
+            animation-delay: 2s;
+            animation-duration: 30s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 35%;
+            animation-delay: 4s;
+            animation-duration: 20s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            left: 50%;
+            animation-delay: 6s;
+            animation-duration: 35s;
+        }
+        
+        .shape:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            left: 70%;
+            animation-delay: 8s;
+            animation-duration: 28s;
+        }
+        
+        .shape:nth-child(6) {
+            width: 70px;
+            height: 70px;
+            left: 85%;
+            animation-delay: 10s;
+            animation-duration: 22s;
+        }
+        
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
         }
         
-        .animate-float {
-            animation: float 4s ease-in-out infinite;
+        /* Enhanced Theme Toggle */
+        .theme-toggle-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .theme-toggle {
+            position: relative;
+            width: 64px;
+            height: 32px;
+            background: var(--toggle-bg);
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
-        .animate-pulse-slow {
-            animation: pulse 3s ease-in-out infinite;
+        .theme-toggle:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: scale(1.05);
         }
-
-        .bg-gradient-to-r {
-            background: linear-gradient(to right, #f6d365, #fda085);
+        
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: var(--toggle-handle);
+            border-radius: 50%;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
         }
-
-        .hover\:scale-110:hover {
-            transform: scale(1.10);
+        
+        /* Dark mode toggle position */
+        body.dark .theme-toggle::before {
+            transform: translateX(32px);
+            background: var(--toggle-handle);
+        }
+        
+        /* Theme toggle icons */
+        .theme-toggle-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            transition: all var(--transition-speed) ease;
+            z-index: 1;
+        }
+        
+        .theme-toggle-icon.sun {
+            right: 6px;
+            color: #fbbf24;
+            opacity: 0;
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .theme-toggle-icon.moon {
+            left: 6px;
+            color: #64748b;
+            opacity: 1;
+            transform: translateY(-50%) rotate(0deg);
+        }
+        
+        /* Dark mode icon states */
+        body.dark .theme-toggle-icon.sun {
+            opacity: 1;
+            transform: translateY(-50%) rotate(0deg);
+        }
+        
+        body.dark .theme-toggle-icon.moon {
+            opacity: 0;
+            transform: translateY(-50%) rotate(-180deg);
+        }
+        
+        /* Theme toggle background gradient */
+        body.light .theme-toggle {
+            background: linear-gradient(45deg, #e2e8f0, #cbd5e1);
+        }
+        
+        body.dark .theme-toggle {
+            background: linear-gradient(45deg, #334155, #475569);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+        
+        /* Navigation */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: var(--navbar-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: var(--shadow-medium);
+        }
+        
+        /* Enhanced Buttons */
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), #8b5cf6);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 12px 26px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all var(--transition-speed) ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        /* 404 Specific Styles */
+        .error-404 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 8rem;
+            background: linear-gradient(45deg, var(--accent), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            line-height: 1;
+            margin-bottom: 2rem;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .error-icon {
+            font-size: 6rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.05);
+            }
+        }
+        
+        .error-container {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+            padding: 2rem;
+        }
+        
+        .error-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .error-description {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .error-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        @media (min-width: 640px) {
+            .error-actions {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .error-404 {
+                font-size: 6rem;
+            }
+            
+            .error-icon {
+                font-size: 4rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-description {
+                font-size: 1.125rem;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .theme-toggle {
+                width: 56px;
+                height: 28px;
+            }
+            
+            .theme-toggle::before {
+                width: 20px;
+                height: 20px;
+            }
+            
+            body.dark .theme-toggle::before {
+                transform: translateX(28px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .error-404 {
+                font-size: 4rem;
+            }
+            
+            .error-content {
+                padding: 1rem;
+            }
+        }
+        
+        /* Fade in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Accent text */
+        .accent-text {
+            color: var(--accent);
+        }
+        
+        /* Background sections */
+        .bg-secondary {
+            background-color: var(--bg-secondary);
+        }
+        
+        .bg-tertiary {
+            background-color: var(--bg-tertiary);
+        }
+        
+        .text-muted {
+            color: var(--text-muted);
+        }
+        
+        .bg-primary {
+            background-color: var(--bg-primary);
         }
     </style>
 </head>
-<body class="bg-gradient-to-r from-teal-200 to-teal-500 min-h-screen flex items-center justify-center">
-    <div class="max-w-lg mx-auto text-center px-6 py-16 bg-white rounded-xl shadow-xl">
-        <div class="mb-8 animate-float">
-            <i class="fas fa-exclamation-triangle text-9xl text-yellow-500"></i>
-        </div>
-        
-        <h1 class="text-6xl font-bold text-gray-800 mb-4">404</h1>
-        <h2 class="text-3xl font-semibold text-gray-700 mb-6">Không tìm thấy trang</h2>
-        
-        <p class="text-gray-600 mb-10">
-            Rất tiếc, chúng tôi không thể tìm thấy trang bạn đang tìm kiếm. 
-            Trang này có thể đã bị xóa, thay đổi tên, hoặc tạm thời không khả dụng.
-        </p>
-        
-        <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-110 animate-pulse-slow">
-            <i class="fas fa-home mr-2"></i> Quay lại trang chủ
-        </a>
-        
-        <div class="mt-8 text-gray-500">
-            <!--
-            <p class="text-sm">Nếu bạn tin rằng đây là lỗi, vui lòng liên hệ với chúng tôi</p>
-           
-            <div class="flex justify-center mt-4 space-x-4">
-                <a href="#" class="text-gray-400 hover:text-gray-600">
-                    <i class="fas fa-envelope text-xl"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-gray-600">
-                    <i class="fab fa-facebook text-xl"></i>
-                </a>
-                <a href="#" class="text-gray-400 hover:text-gray-600">
-                    <i class="fab fa-twitter text-xl"></i>
-                </a>
-            </div>
-            -->
+<body class="light">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
         </div>
     </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Đang tải SapaSoftware...</div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="navbar" id="navbar">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <a href="/" class="text-2xl font-bold text-decoration-none">
+                    <span class="accent-text">Sapa</span>Software
+                </a>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="/#features" class="hidden md:block text-sm font-medium hover:text-blue-600 transition">Tính năng</a>
+                <a href="/#contact" class="hidden md:block text-sm font-medium hover:text-blue-600 transition">Liên hệ</a>
+                <div class="theme-toggle-container">
+                    <div class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon theme-toggle-icon moon"></i>
+                        <i class="fas fa-sun theme-toggle-icon sun"></i>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-20">
+        <!-- 404 Error Section -->
+        <section class="error-container">
+            <div class="error-content fade-in">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                
+                <div class="error-404">404</div>
+                
+                <h1 class="error-title">Trang không tìm thấy</h1>
+                
+                <p class="error-description">
+                    Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển. 
+                    Hãy quay lại trang chủ để khám phá các giải pháp quản lý hóa đơn hiệu quả của SapaSoftware.
+                </p>
+                
+                <div class="error-actions">
+                    <a href="/" class="btn-primary">
+                        <i class="fas fa-home"></i>
+                        Về trang chủ
+                    </a>
+                    <a href="/#contact" class="btn-secondary">
+                        <i class="fas fa-headset"></i>
+                        Liên hệ hỗ trợ
+                    </a>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <h3 class="text-lg font-semibold mb-4 text-center">Có thể bạn đang tìm kiếm:</h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="/#features" class="text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-star mr-1"></i>Tính năng nổi bật
+                        </a>
+                        <a href="/#contact" class="text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-phone mr-1"></i>Thông tin liên hệ
+                        </a>
+                        <a href="tel:0343928899" class="text-blue-600 hover:text-blue-800 transition-colors">
+                            <i class="fas fa-headset mr-1"></i>Hotline: 0343 92 8899
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-tertiary py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row justify-between items-center fade-in">
+                <div class="mb-6 lg:mb-0 text-center lg:text-left">
+                    <h2 class="text-2xl font-bold mb-2">
+                        <span class="accent-text">Sapa</span>Software
+                    </h2>
+                    <p class="text-muted">
+                        © 2025 SapaSoftware by Lê Anh CMS. All rights reserved.
+                    </p>
+                    <p class="text-sm text-muted mt-2">
+                        Phần mềm quản lý hóa đơn hàng đầu Việt Nam
+                    </p>
+                </div>
+                
+                <div class="flex flex-col items-center lg:items-end">
+                    <div class="flex space-x-4 mb-4">
+                        <a href="tel:0343928899" class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="mailto:lienhe@quanlybanhang.store" class="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-muted text-center lg:text-right">
+                        <div>Hỗ trợ 24/7</div>
+                        <div>Bảo hành trọn đời</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Loading overlay
+        window.addEventListener('load', function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 500);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.className = savedTheme;
+        } else {
+            // Default to light theme
+            body.className = 'light';
+            localStorage.setItem('theme', 'light');
+        }
+        
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', function() {
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            
+            // Toggle theme
+            if (body.classList.contains('light')) {
+                body.className = 'dark';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.className = 'light';
+                localStorage.setItem('theme', 'light');
+            }
+            
+            // Reset animation
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Analytics tracking for interactions
+        function trackEvent(action, category = 'User Interaction') {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    event_category: category,
+                    event_label: window.location.pathname
+                });
+            }
+        }
+
+        // Track button clicks
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                trackEvent('404 Page Button Click', 'Navigation');
+            });
+        });
+
+        // Track phone number clicks
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function() {
+                trackEvent('404 Page Phone Call', 'Contact');
+            });
+        });
+
+        // Track theme toggle
+        themeToggle.addEventListener('click', function() {
+            trackEvent('404 Page Theme Toggle', 'UI Interaction');
+        });
+
+        // Track 404 page view
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: '404 - Trang không tìm thấy',
+                page_location: window.location.href,
+                event_category: '404 Error'
+            });
+        }
+
+        // Auto-redirect suggestion after 30 seconds
+        /*
+        setTimeout(() => {
+            if (confirm('Bạn có muốn quay lại trang chủ SapaSoftware không?')) {
+                window.location.href = '/';
+            }
+        }, 30000);
+        */
+    </script>
 </body>
 </html>
