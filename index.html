@@ -3,284 +3,1616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SapaSoftware - Giải pháp quản lý hóa đơn hiệu quả</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>SapaSoftware - Giải pháp quản lý hóa đơn hiệu quả | Phần mềm bán hàng</title>
+    <meta name="description" content="SapaSoftware - Hệ thống quản lý hóa đơn thông minh, tiết kiệm thời gian và tối ưu trải nghiệm khách hàng. Báo cáo doanh thu, chia sẻ hóa đơn dễ dàng.">
+    <meta name="keywords" content="phần mềm quản lý hóa đơn, phần mềm bán hàng, quản lý doanh thu, SapaSoftware, hóa đơn điện tử">
+    <meta name="author" content="SapaSoftware by Lê Anh CMS">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="SapaSoftware - Giải pháp quản lý hóa đơn hiệu quả">
+    <meta property="og:description" content="Nâng cao hiệu suất kinh doanh với hệ thống quản lý hóa đơn thông minh">
+    <meta property="og:image" content="https://i.imgur.com/ihbHi2c.png">
+    <meta property="og:url" content="https://quanlybanhang.store">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="vi_VN">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Libraries -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YG0MPPSMLT"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-YG0MPPSMLT');
-</script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-YG0MPPSMLT');
+    </script>
 
     <style>
-        .dark {
-            --bg-primary: #1f2937;
-            --bg-secondary: #111827;
-            --text-primary: #f3f4f6;
-            --text-secondary: #e5e7eb;
-            --accent: #60a5fa;
+        :root {
+            --transition-speed: 0.3s;
+            --border-radius: 12px;
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
-        .light {
+        /* Light theme variables */
+        body.light {
             --bg-primary: #ffffff;
-            --bg-secondary: #f3f4f6;
-            --text-primary: #1f2937;
-            --text-secondary: #4b5563;
-            --accent: #2563eb;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --border-color: #e2e8f0;
+            --navbar-bg: rgba(255, 255, 255, 0.9);
+            --toggle-bg: #e2e8f0;
+            --toggle-handle: #3b82f6;
+        }
+        
+        /* Dark theme variables */
+        body.dark {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --accent: #60a5fa;
+            --accent-hover: #3b82f6;
+            --border-color: #475569;
+            --navbar-bg: rgba(15, 23, 42, 0.9);
+            --toggle-bg: #334155;
+            --toggle-handle: #fbbf24;
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
             background-color: var(--bg-primary);
             color: var(--text-primary);
-            transition: all 0.3s ease;
+            transition: all var(--transition-speed) ease;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
         
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            animation: float 20s infinite linear;
+        }
+        
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            left: 20%;
+            animation-delay: 2s;
+            animation-duration: 30s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 35%;
+            animation-delay: 4s;
+            animation-duration: 20s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            left: 50%;
+            animation-delay: 6s;
+            animation-duration: 35s;
+        }
+        
+        .shape:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            left: 70%;
+            animation-delay: 8s;
+            animation-duration: 28s;
+        }
+        
+        .shape:nth-child(6) {
+            width: 70px;
+            height: 70px;
+            left: 85%;
+            animation-delay: 10s;
+            animation-duration: 22s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Theme Toggle - FIXED VERSION */
+        .theme-toggle-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .theme-toggle {
+            position: relative;
+            width: 64px;
+            height: 32px;
+            background: var(--toggle-bg);
+            border-radius: 20px;
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+        
+        .theme-toggle:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: scale(1.05);
+        }
+        
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 24px;
+            height: 24px;
+            background: var(--toggle-handle);
+            border-radius: 50%;
+            transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        /* Dark mode toggle position */
+        body.dark .theme-toggle::before {
+            transform: translateX(32px);
+            background: var(--toggle-handle);
+        }
+        
+        /* Theme toggle icons - FIXED RESPONSIVE */
+        .theme-toggle-icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            transition: all var(--transition-speed) ease;
+            z-index: 1;
+            width: 14px;
+            height: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .theme-toggle-icon.sun {
+            right: 6px;
+            color: #fbbf24;
+            opacity: 0;
+            transform: translateY(-50%) rotate(180deg);
+        }
+        
+        .theme-toggle-icon.moon {
+            left: 6px;
+            color: #64748b;
+            opacity: 1;
+            transform: translateY(-50%) rotate(0deg);
+        }
+        
+        /* Dark mode icon states */
+        body.dark .theme-toggle-icon.sun {
+            opacity: 1;
+            transform: translateY(-50%) rotate(0deg);
+        }
+        
+        body.dark .theme-toggle-icon.moon {
+            opacity: 0;
+            transform: translateY(-50%) rotate(-180deg);
+        }
+        
+        /* Theme toggle background gradient */
+        body.light .theme-toggle {
+            background: linear-gradient(45deg, #e2e8f0, #cbd5e1);
+        }
+        
+        body.dark .theme-toggle {
+            background: linear-gradient(45deg, #334155, #475569);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+        
+        /* Navigation */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background-color: var(--navbar-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .navbar.scrolled {
+            box-shadow: var(--shadow-medium);
+        }
+        
+        /* Enhanced Buttons */
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), #8b5cf6);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Poppins', sans-serif;
+            white-space: nowrap;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn-primary i {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 12px 26px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all var(--transition-speed) ease;
+            font-family: 'Poppins', sans-serif;
+            white-space: nowrap;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary i {
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        
+        /* Feature Cards */
+        .feature-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent), #8b5cf6);
+            transform: scaleY(0);
+            transition: transform var(--transition-speed) ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        /* FIXED: Feature Icons - Responsive */
+        .feature-icon {
+            color: var(--accent);
+            animation: pulse-glow 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        
+        .feature-icon i {
+            display: block;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+        
+        /* Hero Section */
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+        }
+        
+        .hero-image {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--transition-speed) ease;
+        }
+        
+        .hero-image:hover::after {
+            opacity: 1;
+        }
+        
+        /* Stats Cards */
+        .stats-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            text-align: center;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .stats-card:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .stats-number {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        
+        /* FIXED: Contact Icons - Responsive */
+        .contact-icon {
+            background: linear-gradient(45deg, var(--accent), #8b5cf6);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: all var(--transition-speed) ease;
+        }
+        
+        .contact-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .contact-icon i {
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* IMPROVED: Contact Section - Better Responsive */
+        .contact-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* FIXED: Contact Icons - Better Mobile Support */
+        .contact-icon {
+            background: linear-gradient(45deg, var(--accent), #8b5cf6);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            flex-shrink: 0;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .contact-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .contact-icon i {
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* IMPROVED: Contact Info Layout */
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .contact-info-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .contact-info-content .font-medium {
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: var(--text-secondary);
+        }
+
+        .contact-info-content .text-lg {
+            font-size: 16px;
+            font-weight: 600;
+            word-break: break-word;
+        }
+
+        /* IMPROVED: Bank Account Section */
+        .bank-account-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .bank-account-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .bank-account-copy {
+            flex-shrink: 0;
+        }
+
+        /* ENHANCED RESPONSIVE DESIGN - Contact Section */
+        @media (max-width: 768px) {
+            /* Contact Section Mobile Improvements */
+            #contact .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            
+            #contact .bg-primary {
+                padding: 24px 16px;
+                margin: 0 8px;
+            }
+            
+            /* Contact Grid - Stack on Mobile */
+            #contact .grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            /* Contact Cards Mobile */
+            .contact-card {
+                padding: 16px;
+                margin-bottom: 16px;
+            }
+            
+            /* Contact Icons Mobile */
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                min-width: 40px;
+                min-height: 40px;
+                font-size: 16px;
+            }
+            
+            /* Contact Info Mobile */
+            .contact-info-item {
+                gap: 12px;
+            }
+            
+            .contact-info-content .text-lg {
+                font-size: 15px;
+                line-height: 1.4;
+            }
+            
+            /* Bank Account Mobile */
+            .bank-account-section {
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+            
+            .bank-account-copy {
+                align-self: flex-start;
+            }
+            
+            .bank-account-copy .btn-primary {
+                padding: 10px 16px;
+                font-size: 14px;
+                width: auto;
+            }
+            
+            /* QR Code Mobile */
+            #contact .slide-in-right {
+                order: -1;
+                margin-bottom: 20px;
+            }
+            
+            #contact .slide-in-right .rounded-xl {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            
+            /* Contact Title Mobile */
+            #contact .section-title {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 16px;
+            }
+            
+            #contact .text-xl {
+                font-size: 1.1rem;
+                line-height: 1.4;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Extra Small Mobile - Contact */
+            #contact .bg-primary {
+                padding: 20px 12px;
+                margin: 0 4px;
+                border-radius: 16px;
+            }
+            
+            /* Contact Cards Extra Small */
+            .contact-card {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+            
+            /* Contact Icons Extra Small */
+            .contact-icon {
+                width: 36px;
+                height: 36px;
+                min-width: 36px;
+                min-height: 36px;
+                font-size: 14px;
+            }
+            
+            /* Contact Info Extra Small */
+            .contact-info-item {
+                gap: 10px;
+            }
+            
+            .contact-info-content .font-medium {
+                font-size: 13px;
+            }
+            
+            .contact-info-content .text-lg {
+                font-size: 14px;
+            }
+            
+            /* Bank Account Extra Small */
+            .bank-account-copy .btn-primary {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+            
+            /* QR Code Extra Small */
+            #contact .slide-in-right .rounded-xl {
+                max-width: 240px;
+            }
+            
+            /* Contact Title Extra Small */
+            #contact .section-title {
+                font-size: 1.75rem;
+            }
+            
+            #contact .text-xl {
+                font-size: 1rem;
+            }
+        }
+
+        /* LANDSCAPE MOBILE - Contact */
+        @media (max-height: 500px) and (orientation: landscape) {
+            #contact {
+                padding: 40px 0;
+            }
+            
+            #contact .bg-primary {
+                padding: 20px 16px;
+            }
+            
+            #contact .grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                align-items: start;
+            }
+            
+            #contact .slide-in-right {
+                order: 0;
+                margin-bottom: 0;
+            }
+            
+            #contact .slide-in-right .rounded-xl {
+                max-width: 200px;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* ENHANCED RESPONSIVE DESIGN - FIXED ICONS */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0 60px;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            /* FIXED: Mobile Feature Icons */
+            .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+            }
+            
+            /* FIXED: Mobile Contact Icons */
+            .contact-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                margin-right: 12px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 24px;
+                font-size: 16px;
+            }
+            
+            .btn-primary i,
+            .btn-secondary i {
+                font-size: 18px;
+            }
+            
+            /* FIXED: Mobile Theme Toggle */
+            .theme-toggle {
+                width: 56px;
+                height: 28px;
+            }
+            
+            .theme-toggle::before {
+                width: 20px;
+                height: 20px;
+                top: 2px;
+                left: 2px;
+            }
+            
+            body.dark .theme-toggle::before {
+                transform: translateX(26px);
+            }
+            
+            .theme-toggle-icon {
+                font-size: 10px;
+                width: 12px;
+                height: 12px;
+            }
+            
+            .theme-toggle-icon.sun {
+                right: 5px;
+            }
+            
+            .theme-toggle-icon.moon {
+                left: 5px;
+            }
+            
+            /* FIXED: Mobile Stats Cards */
+            .stats-card {
+                padding: 16px 12px;
+            }
+            
+            .stats-number {
+                font-size: 1.5rem;
+            }
+            
+            /* FIXED: Mobile Navigation */
+            .navbar .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            
+            .navbar nav {
+                gap: 12px;
+            }
+            
+            .navbar h1 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            /* EXTRA SMALL MOBILE FIXES */
+            .feature-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .contact-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+                margin-right: 10px;
+            }
+            
+            .btn-primary,
+            .btn-secondary {
+                padding: 14px 20px;
+                font-size: 14px;
+                gap: 8px;
+            }
+            
+            .theme-toggle {
+                width: 48px;
+                height: 24px;
+            }
+            
+            .theme-toggle::before {
+                width: 16px;
+                height: 16px;
+            }
+            
+            body.dark .theme-toggle::before {
+                transform: translateX(22px);
+            }
+            
+            .stats-card {
+                padding: 12px 8px;
+            }
+            
+            .stats-number {
+                font-size: 1.25rem;
+            }
+        }
+        
+        /* LANDSCAPE MOBILE FIXES */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-section {
+                padding: 60px 0 40px;
+            }
+            
+            .feature-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.25rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+        
+        /* Fade in animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Accent text */
+        .accent-text {
+            color: var(--accent);
+        }
+        
+        /* Background sections */
         .bg-secondary {
             background-color: var(--bg-secondary);
         }
         
-        .feature-card {
-            background-color: var(--bg-secondary);
-            border-left: 4px solid var(--accent);
-            transition: transform 0.3s ease;
+        .bg-tertiary {
+            background-color: var(--bg-tertiary);
         }
         
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .text-muted {
+            color: var(--text-muted);
         }
         
-        .accent-text {
-            color: var(--accent);
+        .bg-primary {
+            background-color: var(--bg-primary);
         }
     </style>
 </head>
 <body class="light">
-    <header class="relative">
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Đang tải SapaSoftware...</div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="navbar" id="navbar">
         <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center">
-                <h1 class="text-2xl font-bold"><span class="accent-text">Sapa</span>Software</h1>
+                <h1 class="text-2xl font-bold">
+                    <span class="accent-text">Sapa</span>Software
+                </h1>
             </div>
-            <div class="flex items-center">
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
-                    <i class="fas fa-moon dark:hidden"></i>
-                    <i class="fas fa-sun hidden dark:block"></i>
-                </button>
+            <div class="flex items-center space-x-6">
+                <a href="#features" class="hidden md:block text-sm font-medium hover:text-blue-600 transition">Tính năng</a>
+                <a href="#contact" class="hidden md:block text-sm font-medium hover:text-blue-600 transition">Liên hệ</a>
+                <div class="theme-toggle-container">
+                    <div class="theme-toggle" id="theme-toggle">
+                        <i class="fas fa-moon theme-toggle-icon moon"></i>
+                        <i class="fas fa-sun theme-toggle-icon sun"></i>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
 
-    <main class="container mx-auto px-4 py-8">
+    <main class="pt-20">
         <!-- Hero Section -->
-        <section class="flex flex-col md:flex-row items-center justify-between py-12">
-            <div class="md:w-1/2 mb-8 md:mb-0">
-                <h2 class="text-4xl font-bold mb-4">
-                    <span class="accent-text">SapaSoftware</span>
-                </h2>
-                <h3 class="text-2xl mb-6">Giải pháp quản lý hóa đơn hiệu quả</h3>
-                <p class="mb-8 text-lg">Nâng cao hiệu suất kinh doanh với hệ thống quản lý hóa đơn thông minh, tiết kiệm thời gian và tối ưu trải nghiệm khách hàng.</p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#contact" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                        <i class="fas fa-headset mr-2"></i>Liên hệ ngay
-                    </a>
-                    <a href="#features" class="px-6 py-3 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                        <i class="fas fa-info-circle mr-2"></i>Tìm hiểu thêm
-                    </a>
-                </div>
-            </div>
-            <div class="md:w-1/2">
-                <div class="relative rounded-lg overflow-hidden shadow-2xl">
-                    <img src="https://i.imgur.com/ihbHi2c.png" alt="SapaSoftware Dashboard" class="w-full">
-                    <div class="absolute top-0 left-0 bg-blue-600 text-white px-4 py-2 rounded-br-lg">
-                        <i class="fas fa-star mr-1"></i>Phiên bản mới
+        <section class="hero-section py-20">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+                    <div class="lg:w-1/2 slide-in-left">
+                        <div class="mb-6">
+                            <span class="inline-block px-6 py-3 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium mb-4">
+                                🚀 Phiên bản mới 2025
+                            </span>
+                        </div>
+                        <h2 class="hero-title text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                            <span class="accent-text">Sapa</span>Software
+                        </h2>
+                        <h3 class="hero-subtitle text-2xl lg:text-3xl mb-6 text-muted font-light">
+                            Giải pháp quản lý hóa đơn hiệu quả
+                        </h3>
+                        <p class="mb-8 text-lg lg:text-xl text-muted leading-relaxed">
+                            Nâng cao hiệu suất kinh doanh với hệ thống quản lý hóa đơn thông minh, 
+                            tiết kiệm thời gian và tối ưu trải nghiệm khách hàng.
+                        </p>
+                        
+                        <!-- Stats -->
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="stats-card">
+                                <div class="stats-number text-2xl font-bold">1000+</div>
+                                <div class="text-sm text-muted">Khách hàng</div>
+                            </div>
+                            <div class="stats-card">
+                                <div class="stats-number text-2xl font-bold">99.9%</div>
+                                <div class="text-sm text-muted">Uptime</div>
+                            </div>
+                            <div class="stats-card">
+                                <div class="stats-number text-2xl font-bold">24/7</div>
+                                <div class="text-sm text-muted">Hỗ trợ</div>
+                            </div>
+                        </div>
+                        
+                        <div class="btn-group flex flex-col sm:flex-row gap-4">
+                            <a href="#contact" class="btn-primary">
+                                <i class="fas fa-headset"></i>
+                                Liên hệ ngay
+                            </a>
+                            <a href="#features" class="btn-secondary">
+                                <i class="fas fa-info-circle"></i>
+                                Tìm hiểu thêm
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 slide-in-right">
+                        <div class="hero-image">
+                            <img src="https://i.imgur.com/ihbHi2c.png" 
+                                 alt="SapaSoftware Dashboard - Giao diện quản lý hóa đơn hiện đại" 
+                                 class="w-full h-auto"
+                                 loading="lazy">
+                            <div class="absolute top-4 left-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg">
+                                <i class="fas fa-star mr-1"></i>Phiên bản mới
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Features Section -->
-        <section id="features" class="py-12">
-            <h2 class="text-3xl font-bold mb-12 text-center">
-                <i class="fas fa-gem mr-2 accent-text"></i>Tính năng nổi bật
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="feature-card p-6 rounded-lg shadow-lg">
-                    <div class="text-4xl mb-4 accent-text">
-                        <i class="fas fa-file-invoice"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Quản lý hóa đơn</h3>
-                    <p>Tạo và quản lý hóa đơn nhanh chóng, hỗ trợ lưu giá tuỳ chỉnh cho từng cửa hàng</p>
+        <section id="features" class="py-20 bg-secondary">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="section-title text-4xl lg:text-5xl font-bold mb-6">
+                        <i class="fas fa-gem mr-3 feature-icon" style="width: auto; height: auto; margin: 0; font-size: 2rem;"></i>
+                        Tính năng nổi bật
+                    </h2>
+                    <p class="text-xl text-muted max-w-3xl mx-auto">
+                        Khám phá những tính năng mạnh mẽ giúp tối ưu hóa quy trình quản lý kinh doanh của bạn
+                    </p>
                 </div>
-                <div class="feature-card p-6 rounded-lg shadow-lg">
-                    <div class="text-4xl mb-4 accent-text">
-                        <i class="fas fa-chart-line"></i>
+                
+                <div class="feature-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="feature-card p-8 fade-in">
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Quản lý hóa đơn thông minh</h3>
+                        <p class="text-muted leading-relaxed">
+                            Tạo và quản lý hóa đơn nhanh chóng với giao diện trực quan. 
+                            Hỗ trợ lưu giá tuỳ chỉnh cho từng cửa hàng và khách hàng.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Tự động hóa quy trình
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Báo cáo thông minh</h3>
-                    <p>Theo dõi doanh thu mọi lúc, mọi nơi. Biểu đồ trực quan giúp nắm bắt tình hình kinh doanh</p>
-                </div>
-                <div class="feature-card p-6 rounded-lg shadow-lg">
-                    <div class="text-4xl mb-4 accent-text">
-                        <i class="fas fa-share-alt"></i>
+                    
+                    <div class="feature-card p-8 fade-in">
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Báo cáo thông minh</h3>
+                        <p class="text-muted leading-relaxed">
+                            Theo dõi doanh thu mọi lúc, mọi nơi với dashboard trực quan. 
+                            Biểu đồ chi tiết giúp nắm bắt xu hướng kinh doanh.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Phân tích real-time
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Chia Sẻ Hoá Đơn</h3>
-                    <p>Chia sẻ hoá đơn cho khách hàng qua nhiều kênh khác nhau mà không cần in, thân thiện với môi trường</p>
+                    
+                    <div class="feature-card p-8 fade-in">
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Chia sẻ hóa đơn linh hoạt</h3>
+                        <p class="text-muted leading-relaxed">
+                            Chia sẻ hóa đơn cho khách hàng qua email, SMS, hoặc link trực tiếp. 
+                            Không cần in ấn, thân thiện với môi trường.
+                        </p>
+                        <div class="mt-4 flex items-center text-sm text-green-600">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Đa kênh chia sẻ
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Demo Section -->
-        <section class="py-12 bg-secondary rounded-xl p-8">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-6 md:mb-0">
-                    <h2 class="text-2xl font-bold mb-4">Trải nghiệm giao diện hiện đại</h2>
-                    <ul class="space-y-3">
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>Dễ dàng sử dụng, không cần đào tạo</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>Tương thích với mọi thiết bị</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>Cập nhật liên tục, miễn phí</li>
-                        <li><i class="fas fa-check text-green-500 mr-2"></i>Bảo mật dữ liệu tuyệt đối</li>
-                    </ul>
-                    <!-- 
-                    <button class="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                        <i class="fas fa-play-circle mr-2"></i>Xem video demo
-                    </button>
-                     -->
-                </div>
-                <div class="md:w-1/2">
-                    <div class="rounded-lg overflow-hidden shadow-xl">
-                        <img src="https://i.imgur.com/VN9vfri.jpeg" alt="SapaSoftware Interface" class="w-full">
+        <section class="py-20">
+            <div class="container mx-auto px-4">
+                <div class="bg-secondary rounded-2xl p-8 lg:p-12 shadow-xl fade-in">
+                    <div class="flex flex-col lg:flex-row items-center gap-12">
+                        <div class="lg:w-1/2 slide-in-left">
+                            <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+                                Trải nghiệm giao diện hiện đại
+                            </h2>
+                            <p class="text-lg text-muted mb-8">
+                                Được thiết kế với công nghệ tiên tiến, đảm bảo hiệu suất cao và trải nghiệm người dùng tối ưu.
+                            </p>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="flex items-center">
+                                    <div class="contact-icon mr-4">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <span>Dễ dàng sử dụng, không cần đào tạo phức tạp</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="contact-icon mr-4">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <span>Tương thích với mọi thiết bị (PC, tablet, mobile)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="contact-icon mr-4">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <span>Cập nhật liên tục, miễn phí suốt đời</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="contact-icon mr-4">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <span>Bảo mật dữ liệu cấp ngân hàng</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:w-1/2 slide-in-right">
+                            <div class="rounded-xl overflow-hidden shadow-2xl">
+                                <img src="https://i.imgur.com/VN9vfri.jpeg" 
+                                     alt="SapaSoftware Interface - Giao diện người dùng trực quan" 
+                                     class="w-full h-auto"
+                                     loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-12">
-            <h2 class="text-3xl font-bold mb-8 text-center">Liên hệ để sử dụng phần mềm</h2>
-            <div class="max-w-3xl mx-auto bg-secondary rounded-xl p-8 shadow-lg">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-
-<!-- Thêm link CDN của SweetAlert2 vào thẻ <head> -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <div>
-        <h3 class="text-xl font-semibold mb-4">Thông tin liên hệ</h3>
-        <ul class="space-y-4">
-            <!-- Gọi điện thoại -->
-            <li class="flex items-center">
-                <i class="fas fa-phone-alt w-6 accent-text"></i>
-                <a href="tel:0343928899" class="ml-3 text-blue-600 hover:underline">
-                    0343 92 8899
-                </a>
-            </li>
-    
-            <li class="flex items-center">
-                <i class="fas fa-envelope w-6 accent-text"></i>
-                <span class="ml-3">lienhe@quanlybanhang.store</span>
-            </li>
-    
-            <!-- Sao chép số tài khoản ngân hàng -->
-            <li class="flex items-center">
-                <i class="fas fa-university w-6 accent-text"></i>
-                <span class="ml-3">
-                    MB Bank: <strong>29.84.29</strong> <br><strong>(Le Duc Anh)</strong> 
-                </span>
-                <button onclick="copyBankAccount()" 
-                    class="ml-3 text-sm text-white bg-blue-500 px-2 py-1 rounded hover:bg-blue-600">
-                    Sao chép
-                </button>
-            </li>
-        </ul>
-    </div>
-
-                <div class="md:w-1/2">
-                    <div class="rounded-lg overflow-hidden shadow-xl">
-                        <img src="https://i.imgur.com/tEUTH4I.jpeg" alt="MB-Bank-29-84-29" class="w-full">
-                    </div>   
-                </div>    
-                    
-<script>
-function copyBankAccount() {
-    const bankAccountNumber = "298429";
-    navigator.clipboard.writeText(bankAccountNumber)
-        .then(() => {
-            Swal.fire({
-                icon: "success",
-                title: "Đã sao chép!",
-                text: `Số tài khoản ${bankAccountNumber} đã được sao chép vào clipboard.`,
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "OK"
-            });
-        })
-        .catch(err => {
-            console.error("Lỗi khi sao chép: ", err);
-            Swal.fire({
-                icon: "error",
-                title: "Lỗi!",
-                text: "Không thể sao chép số tài khoản.",
-                confirmButtonColor: "#d33",
-                confirmButtonText: "OK"
-            });
-        });
-}
-
-</script>
-                    <div>
-                        <!-- 
-                        <h3 class="text-xl font-semibold mb-4">Gửi yêu cầu</h3>
-                        <form>
-                            <div class="mb-4">
-                                <input type="text" placeholder="Họ và tên" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+        <section id="contact" class="py-20 bg-secondary">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="section-title text-4xl lg:text-5xl font-bold mb-6">
+                        Liên hệ để sử dụng phần mềm
+                    </h2>
+                    <p class="text-xl text-muted max-w-2xl mx-auto">
+                        Đội ngũ hỗ trợ chuyên nghiệp sẵn sàng tư vấn và hỗ trợ bạn 24/7
+                    </p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-primary rounded-2xl p-8 lg:p-12 shadow-xl fade-in">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <div class="slide-in-left">
+                                <h3 class="text-2xl font-semibold mb-8">Thông tin liên hệ</h3>
+                                
+                                <div class="space-y-6">
+                                    <!-- Phone Contact -->
+                                    <div class="contact-card p-4 rounded-lg">
+                                        <div class="contact-info-item">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-phone-alt"></i>
+                                            </div>
+                                            <div class="contact-info-content">
+                                                <div class="font-medium">Hotline hỗ trợ</div>
+                                                <a href="tel:0343928899" class="text-blue-600 hover:underline text-lg font-semibold">
+                                                    0343 92 8899
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Email Contact -->
+                                    <div class="contact-card p-4 rounded-lg">
+                                        <div class="contact-info-item">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-envelope"></i>
+                                            </div>
+                                            <div class="contact-info-content">
+                                                <div class="font-medium">Email hỗ trợ</div>
+                                                <div class="text-lg">lienhe@quanlybanhang.store</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Bank Account -->
+                                    <div class="contact-card p-4 rounded-lg">
+                                        <div class="bank-account-section">
+                                            <div class="contact-icon">
+                                                <i class="fas fa-university"></i>
+                                            </div>
+                                            <div class="bank-account-info">
+                                                <div class="font-medium">Thanh toán</div>
+                                                <div class="text-lg">
+                                                    MB Bank: <strong>29.84.29</strong><br>
+                                                    <strong>Lê Đức Anh</strong>
+                                                </div>
+                                            </div>
+                                            <div class="bank-account-copy">
+                                                <button onclick="copyBankAccount()" 
+                                                        class="btn-primary text-sm px-4 py-2">
+                                                    <i class="fas fa-copy"></i>
+                                                    <span class="hidden sm:inline">Sao chép</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <input type="email" placeholder="Email" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700">
+                            
+                            <div class="slide-in-right">
+                                <div class="rounded-xl overflow-hidden shadow-xl">
+                                    <img src="https://i.imgur.com/tEUTH4I.jpeg" 
+                                         alt="QR Code thanh toán MB Bank" 
+                                         class="w-full h-auto"
+                                         loading="lazy">
+                                </div>
                             </div>
-                            <div class="mb-4">
-                                <textarea placeholder="Nội dung" rows="3" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700"></textarea>
-                            </div>
-                            <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                                <i class="fas fa-paper-plane mr-2"></i>Gửi yêu cầu
-                            </button>
-                        </form>
-                         -->
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-secondary py-8">
+    <!-- Footer -->
+    <footer class="bg-tertiary py-12">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <h2 class="text-xl font-bold"><span class="accent-text">Sapa</span>Software</h2>
-                    <p class="mt-2">© 2025 SapaSoftware by Lê Anh CMS. All rights reserved.</p>
+            <div class="flex flex-col lg:flex-row justify-between items-center fade-in">
+                <div class="mb-6 lg:mb-0 text-center lg:text-left">
+                    <h2 class="text-2xl font-bold mb-2">
+                        <span class="accent-text">Sapa</span>Software
+                    </h2>
+                    <p class="text-muted">
+                        © 2025 SapaSoftware by Lê Anh CMS. All rights reserved.
+                    </p>
+                    <p class="text-sm text-muted mt-2">
+                        Phần mềm quản lý hóa đơn hàng đầu Việt Nam
+                    </p>
                 </div>
-                <!-- 
-                <div class="flex space-x-4">
-                    <a href="#" class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-blue-400 flex items-center justify-center text-white hover:bg-blue-500 transition">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center text-white hover:bg-red-700 transition">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                </div> -->
+                
+                <div class="flex flex-col items-center lg:items-end">
+                    <div class="flex space-x-4 mb-4">
+                        <a href="tel:0343928899" class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                        <a href="mailto:lienhe@quanlybanhang.store" class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                    <div class="text-sm text-muted text-center lg:text-right">
+                        <div>Hỗ trợ 24/7</div>
+                        <div>Bảo hành trọn đời</div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
-        // Theme toggler
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            document.body.classList.toggle('light');
+        // Loading overlay
+        window.addEventListener('load', function() {
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 500);
         });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // FIXED Theme Toggle - Hoạt động hoàn hảo
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            body.className = savedTheme;
+        } else {
+            // Default to light theme
+            body.className = 'light';
+            localStorage.setItem('theme', 'light');
+        }
+        
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', function() {
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            
+            // Toggle theme
+            if (body.classList.contains('light')) {
+                body.className = 'dark';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                body.className = 'light';
+                localStorage.setItem('theme', 'light');
+            }
+            
+            // Reset animation
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Copy bank account function
+        function copyBankAccount() {
+            const bankAccountNumber = "298429";
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(bankAccountNumber)
+                    .then(() => {
+                        showSuccessMessage();
+                    })
+                    .catch(err => {
+                        console.error("Lỗi khi sao chép: ", err);
+                        fallbackCopy(bankAccountNumber);
+                    });
+            } else {
+                fallbackCopy(bankAccountNumber);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-999999px";
+            textArea.style.top = "-999999px";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showSuccessMessage();
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+                showErrorMessage();
+            }
+            
+            document.body.removeChild(textArea);
+        }
+
+        function showSuccessMessage() {
+            Swal.fire({
+                icon: "success",
+                title: "Đã sao chép!",
+                text: "Số tài khoản 298429 đã được sao chép vào clipboard.",
+                confirmButtonColor: "#3b82f6",
+                confirmButtonText: "OK",
+                timer: 3000,
+                timerProgressBar: true
+            });
+        }
+
+        function showErrorMessage() {
+            Swal.fire({
+                icon: "error",
+                title: "Lỗi!",
+                text: "Không thể sao chép số tài khoản. Vui lòng sao chép thủ công: 298429",
+                confirmButtonColor: "#ef4444",
+                confirmButtonText: "OK"
+            });
+        }
+
+        // Enhanced interactive effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Performance optimization: Lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Analytics tracking for interactions
+        function trackEvent(action, category = 'User Interaction') {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    event_category: category,
+                    event_label: window.location.pathname
+                });
+            }
+        }
+
+        // Track button clicks
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.addEventListener('click', function() {
+                trackEvent('Button Click', 'CTA');
+            });
+        });
+
+        // Track phone number clicks
+        document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+            link.addEventListener('click', function() {
+                trackEvent('Phone Call', 'Contact');
+            });
+        });
+
+        // Track theme toggle
+        themeToggle.addEventListener('click', function() {
+            const newTheme = body.classList.contains('dark') ? 'dark' : 'light';
+            trackEvent('Theme Toggle', 'UI Interaction');
+        });
+
+        // Track copy bank account
+        const originalCopyFunction = window.copyBankAccount;
+        window.copyBankAccount = function() {
+            trackEvent('Copy Bank Account', 'Contact');
+            originalCopyFunction();
+        };
     </script>
 </body>
 </html>
